@@ -19,6 +19,20 @@ router.post('/register', function(req, res) {
   res.json({ message : "User Registered"});
 });
 
+
+router.get('/' , (req,res)=> {
+  User.find({}, (err, result)=> {
+    if(result.length == 1)
+    {
+      res.json({message : "Login Successful" , result : result})
+    }
+    else 
+    {
+      res.json({message : "Invalid Credentials"});
+    }
+  })
+})
+
 router.post('/checklogin' , (req,res)=> {
   User.find(req.body , (err, result)=> {
     if(result.length == 1)
